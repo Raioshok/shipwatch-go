@@ -24,6 +24,13 @@ type Result struct {
 	Error      string        `json:"error,omitempty"`
 }
 
+type Incident struct {
+	Endpoint  string    `json:"endpoint"`
+	URL       string    `json:"url"`
+	OpenedAt time.Time `json:"opened_at"`
+	Reason   string    `json:"reason"`
+}
+
 type Checker struct {
 	client *http.Client
 	now    func() time.Time
@@ -97,4 +104,24 @@ func Availability(results []Result) float64 {
 		}
 	}
 	return float64(healthy) / float64(len(results))
+}
+
+func Incidents(results []Result) []Incident {
+	incidents := make([]Incident, 0)
+	for _, result := range results {
+		if result.Healthy {
+			continue
+		}
+		reason := result.Error
+		if reason == "" {
+			reason = "unexpected status"
+		}
+		incidents = append(incidents, Incident{
+			Endpoint:  result.Name,
+			URL:       result.URL,
+			OpenedAt: result.CheckedAt,
+			Reason:   reason,
+		})
+	}
+	return incidents
 }

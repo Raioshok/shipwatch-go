@@ -41,3 +41,17 @@ func TestAvailabilityCalculatesHealthyRatio(t *testing.T) {
 		t.Fatalf("expected 2/3 availability, got %f", got)
 	}
 }
+
+func TestIncidentsReturnsUnhealthyResults(t *testing.T) {
+	incidents := Incidents([]Result{
+		{Name: "api", URL: "https://api.example.test", Healthy: false, Error: "timeout"},
+		{Name: "docs", URL: "https://docs.example.test", Healthy: true},
+	})
+
+	if len(incidents) != 1 {
+		t.Fatalf("expected one incident, got %d", len(incidents))
+	}
+	if incidents[0].Reason != "timeout" {
+		t.Fatalf("expected timeout reason, got %q", incidents[0].Reason)
+	}
+}

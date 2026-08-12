@@ -1,0 +1,16 @@
+{
+  "endpoints": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com",
+      "timeout_seconds": 3,
+      "expected_status": 200
+    },
+    {
+      "name": "Google",
+      "url": "https://google.com",
+      "timeout_seconds": 3,
+      "expected_status": 200
+    }
+  ]
+}
