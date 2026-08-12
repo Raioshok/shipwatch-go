@@ -7,8 +7,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/alteregoeth-ai/shipwatch-go/internal/monitor"
-	"github.com/alteregoeth-ai/shipwatch-go/internal/store"
+	"github.com/Raioshok/shipwatch-go/internal/monitor"
+	"github.com/Raioshok/shipwatch-go/internal/store"
 )
 
 type API struct {

@@ -1,6 +1,6 @@
 # ShipWatch Go
 
-Go reliability monitor for checking business-critical endpoints and reporting availability. It demonstrates Go services, CLI configuration, HTTP monitoring, concurrency-safe in-memory storage, tests, Docker, and CI.
+Small Go reliability service that checks configured endpoints concurrently, keeps bounded history, and derives incidents from the latest failed state. It uses the standard library so the concurrency and storage choices stay visible.
 
 ## Features
 
@@ -46,8 +46,8 @@ See `docs/API.md` for details.
 go test ./...
 ```
 
-## Portfolio talking points
+## Design Notes
 
-- Go is a strong fit for infrastructure, backend services, cloud tooling, and SRE automation.
-- The repo shows practical reliability engineering, not only syntax.
-- The service uses only the standard library, which makes the core design easy to review.
+- Goroutines fan checks out while a result channel gathers typed outcomes.
+- Latest status and historical checks have separate query paths.
+- File history is portable and inspectable; a production monitor would use a time-series store and durable scheduler.

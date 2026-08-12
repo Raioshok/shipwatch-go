@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/alteregoeth-ai/shipwatch-go/internal/monitor"
+	"github.com/Raioshok/shipwatch-go/internal/monitor"
 )
 
 func TestLatestByEndpointReturnsMostRecentResult(t *testing.T) {

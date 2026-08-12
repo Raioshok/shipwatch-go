@@ -7,7 +7,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/alteregoeth-ai/shipwatch-go/internal/monitor"
+	"github.com/Raioshok/shipwatch-go/internal/monitor"
 )
 
 type MemoryHistory struct {
